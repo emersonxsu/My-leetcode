@@ -1,0 +1,40 @@
+class Solution {
+public:
+    void reverseWords(string &s) {
+        stack<string> stk;
+        string word;
+        auto it = 0;
+        string sol;
+        //if empty, return;
+        if (s.empty()) {
+           return;
+        } 
+        //if all whitespace, return empty string;
+        
+        while (!s.empty() && isspace(s[it]) && it != s.size()-1 ) {
+            it++;
+            if (it == s.size()-1) break;
+        }
+        //read a whole word and push it to stk, keep this looping till end of s;
+        while (it != s.size()) {
+            while (isspace(s[it])) {
+                it++;
+            }
+            while(!isspace(s[it]) && it != s.size()) {
+                word += s[it];
+                it++;
+            }
+            stk.push(word);
+            word.clear();
+        }
+        if (!stk.empty()) {
+            while (stk.size()>1) {
+            sol += stk.top();
+            sol += ' ';
+            stk.pop();
+        }
+        sol += stk.top();
+        s = sol;
+        }
+    }
+};
