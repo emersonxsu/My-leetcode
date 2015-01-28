@@ -1,0 +1,29 @@
+class Solution {
+public:
+    void reverseWords(string &s) {
+            stack<string> st;
+            int i = 0, k = s.size();
+            while (i < k) { // while cursor not reaching the end of sentence
+                int j = i;
+                while ((s[j] == ' ') && (j < k)) j ++; // skip leading spaces
+                if (j == k) break;
+                int u = j;
+                while ((s[u] != ' ') && (u < k)) u ++; // look for end of word                 
+                string sub = s.substr(j, u - j); // get the word                 
+                st.push(sub); // push it to stack                 
+                i = u; // next word             
+            }             
+            s = "";             
+            if (st.size() == 0) {                               
+                return;             
+            }             
+            // the first reversed word does not have leading white space
+            s = st.top();
+            st.pop();
+            while (st.size() > 0) { // First In Last Out
+                string t = st.top();
+                st.pop();
+                s = s + " " + t;
+            }
+    }
+};
