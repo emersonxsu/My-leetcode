@@ -1,6 +1,7 @@
 class Solution {
 public:
     int lengthOfLongestSubstringTwoDistinct(string s) {
+        //'i' is the farthest char away from current iterator 'k'; 'j' points to the position before changed char
         int i = 0, j = -1;
         int MaxLen = 0;
         for (int k = 1; k < s.size(); k++) {
