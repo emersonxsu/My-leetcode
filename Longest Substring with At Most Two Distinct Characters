@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int lengthOfLongestSubstringTwoDistinct(string s) {
+        int i = 0, j = -1;
+        int MaxLen = 0;
+        for (int k = 1; k < s.size(); k++) {
+            if (s[k] == s[k-1]) continue;
+            if (j > -1 && s[k] != s[j]) {
+                MaxLen = MaxLen > (k - i) ? MaxLen : k - i;
+                i = j + 1;
+            }
+            j = k - 1;
+        }
+        return MaxLen = MaxLen > (s.size() - i) ? MaxLen : s.size() - i;
+    }
+};
