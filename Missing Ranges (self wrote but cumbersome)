@@ -8,7 +8,7 @@ public:
                 res.push_back(to_string(lower));
                 return res;
             } else {
-                res.push_back(to_string(lower) + "->" + to_string(upper));        //res[0] = to_string(lower) + "->" + to_string(upper);
+                res.push_back(to_string(lower) + "->" + to_string(upper));      
                 return res;
             }
         } else if (n == upper - lower + 1 || lower == upper) {
