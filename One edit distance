@@ -1,0 +1,42 @@
+class Solution {
+public:
+    bool isOneEditDistance(string s, string t) {
+        if (s.size() > t.size()) {          // swap to make sure s is shorter;
+            string tmp;
+            tmp = s;
+            s = t;
+            t = tmp;
+        }
+        int m = s.size();
+        int n = t.size();
+        int count = 0;
+        if (s == t) return false; 
+        if (n - m > 1) {
+            return false;
+        } else if (n == m) {
+            for (int i = 0; i < n; i++) {
+                if (s[i] == t[i]) {
+                    continue;
+                } else {
+                    count++;
+                }
+            }
+            if (count > 1) {
+                return false;
+            } else return true;
+        } else if (n - m == 1) {
+            if (s == t.substr(0,m)) {  // if only the last element is missing;
+                return true;
+            } else {
+                for (int i = 0; i < m; i ++) {
+                    if (s[i] == t[i]) {
+                        continue;
+                    } else if (s.substr(i) == t.substr(i+1)) {
+                        return true;
+                    } 
+                    else return false;
+                }
+            }
+        }
+    }
+};
