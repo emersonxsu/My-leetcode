@@ -1,0 +1,39 @@
+class Solution {
+public:
+    void merge(int A[], int m, int B[], int n) {
+        int C[m+n];
+        if (m == 0) {
+            for (int i = 0; i < n; i++) {
+                A[i] = B[i];
+            }
+        } else if (m != 0 && n != 0) {
+            int j = 0, k = 0;
+            for (int ic = 0; ic < m + n; ic++) {
+                if (j == m) {
+                    C[ic] = B[k];
+                    k++;
+                    continue;
+                }
+                if (k == n) {
+                    C[ic] = A[j];
+                    j++;
+                    continue;
+                }
+                if (A[j] >= B[k]) {
+                    C[ic] = B[k];
+                    k++;
+                    continue;
+                } 
+                if (A[j] < B[k]) {
+                    C[ic] = A[j];
+                    j++;
+                    continue;
+                }
+                
+            }
+            for (int i = 0; i < m + n; i++) {
+                A[i] = C[i];
+            }
+        }
+    }
+};
