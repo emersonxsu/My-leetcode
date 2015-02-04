@@ -1,0 +1,28 @@
+// Forward declaration of the read4 API.
+int read4(char *buf);
+
+class Solution {
+public:
+    /**
+     * @param buf Destination buffer
+     * @param n   Maximum number of characters to read
+     * @return    The number of characters read
+     */
+    int read(char *buf, int n) {
+        int len = 0;
+        int m = INT_MAX;
+        while(len+4<=n) {
+            m = read4(buf+len);
+            len += m;
+            if(m<4) break;
+        }
+        if(len==n || m<4) return len;
+
+        char *remain = new char[5];
+        m = min(read4(remain),n-len);
+        for(int i=0; i<m; i++) buf[len++] = remain[i];
+        delete remain;
+        
+        return len; 
+    }
+};
