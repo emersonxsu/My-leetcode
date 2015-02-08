@@ -1,0 +1,28 @@
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+    public:
+        bool isValidBST(TreeNode *root) {
+            prev = nullptr;
+            return isMonotonicIncreasing(root);
+        }
+
+    private: 
+        TreeNode *prev;
+        bool isMonotonicIncreasing(TreeNode *p) {
+            if (p == nullptr) return true;
+            if (isMonotonicIncreasing(p->left)) {
+                if (prev != nullptr && p->val <= prev->val) return false;
+                prev = p;
+                return isMonotonicIncreasing(p->right);
+            }
+            return false;
+        }
+};
