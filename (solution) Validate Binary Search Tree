@@ -10,7 +10,6 @@
 class Solution {
     public:
         bool isValidBST(TreeNode *root) {
-            prev = nullptr;
             return isMonotonicIncreasing(root);
         }
 
