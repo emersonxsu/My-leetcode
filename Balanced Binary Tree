@@ -10,16 +10,14 @@
 class Solution {
 public:
     bool isBalanced(TreeNode *root) {
-        if (maxDepth(root) == -1) {
+       if (maxDepth(root) == -1) {
             return false;
         } else return true;
     }
-private:
     int maxDepth(TreeNode *root) {
         if (root == nullptr) return 0;
-        if (maxDepth(root->left) == -1 || maxDepth(root->right) == -1) return -1;
-        if (abs(maxDepth(root->left) - maxDepth(root->right)) > 1) {
-            return -1;
-        } else return max(maxDepth(root->left), maxDepth(root->right)) + 1;
+        int L = maxDepth(root->left), R = maxDepth(root->right);
+        if (L == -1 || R == -1) return -1;
+        return (abs(L - R) <= 1)? max(L, R) + 1 : -1;
     }
 };
