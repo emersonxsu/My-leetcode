@@ -1,0 +1,27 @@
+class Solution {
+public:
+    string countAndSay(int n) {
+        string ret = "1";
+        int count = 2;
+        while (count <= n) {
+            ret = NextCount(ret);
+            count++;
+        }
+        return ret;
+    }
+private:
+    string NextCount (string s) {
+    int counter = 1;
+    string res;
+    for (int i = 0; i < s.size(); ++i){
+        if (s[i] == s[i+1]) {
+            counter++;
+        } else {
+            res = res + to_string(counter) + s[i];
+            counter = 1;
+        }
+    }
+    return res;
+}
+
+};
