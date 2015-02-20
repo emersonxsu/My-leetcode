@@ -1,0 +1,19 @@
+class TwoSum {
+private:
+    unordered_map<int, int> map;
+public:
+	void add(int number) {
+	    ++map[number];
+	}
+
+	bool find(int value) {
+	    for(auto i = map.begin(); i != map.end(); ++i) {
+	        int current = i->first;
+	        int m = value - current;
+	        if (m == current) {
+	            if (map[m] > 1) return true;
+	        } else if (map.find(m) != map.end()) return true;
+	    }
+	    return false;
+	}
+};
