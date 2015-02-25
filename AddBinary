@@ -1,0 +1,20 @@
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        string res;
+        int asize = a.size();
+        int bsize = b.size();
+        bool carry = 0;
+        while (asize > 0 || bsize > 0) {
+            int abit = asize <= 0 ? 0 : a[asize - 1] - '0';
+            int bbit = bsize <= 0 ? 0 : b[bsize - 1] - '0';
+            int cbit = carry ? 1 : 0;
+            res.insert(res.begin(), ((abit + bbit + cbit) % 2 + '0'));
+            carry = (abit + bbit + cbit > 1);
+            asize --; 
+            bsize --;
+        }
+        if (carry) res.insert(res.begin(), '1');
+        return res;
+    }
+};
