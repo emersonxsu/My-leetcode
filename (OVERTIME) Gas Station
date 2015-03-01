@@ -1,0 +1,19 @@
+/* this solution use double for loop, so O(n^2) for the worst case. Can't pass the tests in leetcode */
+
+class Solution {
+public:
+    int canCompleteCircuit(vector<int> &gas, vector<int> &cost) {
+        int N = gas.size();
+        for (int i = 0; i < N; ++i){  // i is the index start station;
+            int gasLeft = 0;
+            for (int j = 0; j < N; ++j) {  // j is the current jth checking station away from i;
+                int k = (i+j) % N;  // k is the index of the current station;
+                if (gasLeft + gas[k] >= cost[k]) {
+                    if (j == N - 1) return i;
+                    gasLeft += gas[k] - cost[k];
+                } else break;
+            }
+        }
+        return -1;
+    }
+};
