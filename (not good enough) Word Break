@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int ladderLength(string start, string end, unordered_set<string> &dict) {
+       map<string, int> dist;
+       dist[start] = 1;
+       queue<string> que;
+       que.push(start);
+       
+       while(!que.empty()) {
+           string word = que.front();
+           que.pop();
+           if (word == end) break;
+           
+         for (int i = 0; i < word.size(); ++i) {
+            string temp = word;
+            for (char c = 'a'; c <= 'z'; ++c) {
+                temp[i] = c;
+                if (dict.find(temp) != dict.end() && dist.find(temp) == dist.end()) {
+                   dist[temp] = dist[word] + 1;
+                   que.push(temp);
+               }
+            }
+         }
+       }
+       return (dist.find(end) == dist.end()) ? 0 : dist[end];    
+    }
+};
