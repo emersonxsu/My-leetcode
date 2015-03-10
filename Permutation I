@@ -1,3 +1,9 @@
+/* Given a collection of numbers, return all possible permutations.
+
+For example,
+[1,2,3] have the following permutations:
+[1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], and [3,2,1].
+*/
 class Solution {
 public:
     vector<vector<int> > permute(vector<int> &num) {
@@ -22,3 +28,7 @@ public:
         return res;
     }
 };
+
+// I have referred a solution with void recurssive function. That one is simpler.
+// Key points: 1) swap() function and remember to reset using 2nd swap().
+//             2) concatenate two vectors a and b: a.insert(a.end(), b.begin(), b.end()).
