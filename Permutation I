@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<vector<int> > permute(vector<int> &num) {
+        vector< vector<int> > res;
+        res = permuteRecursion(num, 0);
+        return res;
+    }
+    
+    vector< vector<int> > permuteRecursion(vector<int> &num, int start) {
+        vector< vector<int> > res;
+        if (start >= num.size()) {
+            res.push_back(num);
+            return res;
+        }
+        for (int i = start; i < num.size(); ++i) {
+            swap(num[start], num[i]);
+            vector< vector<int> > tmp;
+            tmp = permuteRecursion(num, start + 1);
+            res.insert(res.end(), tmp.begin(), tmp.end()); 
+            swap(num[start], num[i]);
+        }
+        return res;
+    }
+};
