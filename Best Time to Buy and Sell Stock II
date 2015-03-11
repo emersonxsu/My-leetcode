@@ -1,0 +1,53 @@
+/*
+Say you have an array for which the ith element is the price of a given stock on day i.
+Design an algorithm to find the maximum profit. You may complete as many transactions as you like 
+(ie, buy one and sell one share of the stock multiple times). 
+However, you may not engage in multiple transactions at the same time 
+(ie, you must sell the stock before you buy again).
+*/
+
+class Solution {
+public:
+    int maxProfit(vector<int> &prices) {
+        int res = 0;
+        if (prices.empty() || prices.size() == 1) return res;
+        
+        int low = prices[0];
+   //     vector<bool> buyin (false);
+        
+        int start = 1;
+        //find the 1st buyin day
+        while (prices[start] <= low) {
+            low = prices[start];
+            start++;
+        }
+        start--;
+ //       buyin[start] = true;
+        
+        for(int i = start + 1; i < prices.size(); ++i) {
+            if (prices[i] > low) {
+     //           buyin[i-1] = true;
+                res += (prices[i] - low);
+                low = prices[i];
+            }
+            if (prices[i] <= low) {
+                low = prices[i];
+            }
+        }
+        return res;
+    }
+    /*
+    int findNextBuyinDay(vector<int> &prices, int day) {
+        int low = prices[day];
+        int i = day + 1;
+        while (prices[i] < low && i) {
+            low = prices[i];
+            i++;
+        }
+        i--;
+        return i;
+    } */
+};
+
+//wrote a function to find next lower day. 
+// use a bool vector to record the day buying in. 
