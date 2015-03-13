@@ -13,3 +13,6 @@ public:
         
     }
 };
+
+/*
+the key point is (n-1), the rest is just like decimal to binary. 
