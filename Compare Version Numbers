@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int compareVersion(string version1, string version2) {
+        //vectors to store numbers
+        vector<int> v1 = createNumVec(version1);
+        vector<int> v2 = createNumVec(version2);
+        for (int i = 0; i < v1.size() && i < v2.size(); ++i) {
+            if(v1[i] == v2[i]) continue;
+            else return (v1[i] > v2[i]) ? 1 : -1;
+        }
+        if(v1.size() == v2.size()) return 0;
+        else return (v1.size() > v2.size()) ? 1 : -1;
+    }
+    
+    vector<int> createNumVec(string s) {
+        vector<int> res;
+        int i = 0;
+        while(s.find('.') != string::npos) {
+            int dotPos = s.find('.');
+            res.push_back(stoi(s.substr(0, dotPos)));
+            s = s.substr(dotPos + 1);
+            i++;
+        }
+        if(s.find('.') == string::npos) res.push_back(stoi(s));
+        while(res[res.size() - 1] == 0) {
+            res.pop_back();
+        }
+        return res;
+    }
+};
