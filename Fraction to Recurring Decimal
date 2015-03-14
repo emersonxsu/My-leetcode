@@ -1,0 +1,33 @@
+class Solution {
+public:
+    string fractionToDecimal(int64_t numerator, int64_t denominator) {
+        int64_t n = numerator;
+        int64_t d = denominator;
+        if (n == 0) return "0";
+        string res;
+        if (n < 0 ^ d < 0) res += '-';  //either one is negative
+        n = abs(n); 
+        d = abs(d);
+        
+        res += to_string(n / d);
+        if (n % d == 0) return res;
+        else res += '.';
+        
+        unordered_map<int, int> map;
+        int64_t r = 0;  //remainder
+        for(r = n % d; r > 0; r %= d) {
+            // if repeating
+            if (map.find(r) != map.end()) {
+                res.insert(map[r], 1, '(');
+                res += ')';
+                break;
+            }
+            map[r] = res.size();    //what if negative? 
+            
+            r *= 10;
+            res += to_string(r / d);
+        }
+        return res;
+        
+    }
+};
