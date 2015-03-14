@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int> &numbers, int target) {
+        vector<int> res;
+        if (numbers.size() <= 1) return res;
+        
+        int i = 0, j = numbers.size() - 1;
+        
+        while (i != j) {
+            if (numbers[i] + numbers[j] < target) {
+                i++;
+            } else if (numbers[i] + numbers[j] > target) {
+                j--;
+            } else {
+                res.push_back(i+1);
+                res.push_back(j+1);
+                break;
+            }
+        }
+        return res;
+    }
+};
+
+// Don't forget to add break if equals to target
