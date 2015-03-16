@@ -1,0 +1,33 @@
+/*
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode *upsideDownBinaryTree(TreeNode *root) {
+        stack<TreeNode *> stk;
+        if (root == nullptr) return root;
+        while(root != nullptr) {
+            stk.push(root);
+            root = root->left;
+        }
+        root = stk.top();
+        while(stk.size() > 1) {
+            TreeNode *p = stk.top();
+            stk.pop();
+            TreeNode *q = stk.top();
+            if(q->right != nullptr) {
+                p->left = q->right;
+                q->right = nullptr; //reset right child
+            }
+            p->right = q;
+            q->left = nullptr;  //reset left child
+        }
+        return root;
+    }
+};
