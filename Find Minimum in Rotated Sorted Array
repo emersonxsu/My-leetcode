@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int findMin(vector<int> &num) {
+        int low = 0, high = num.size() - 1;
+        return BinarySearch(num, low, high);
+    }
+    int BinarySearch(vector<int> &num, int low, int high) {
+        int size = high - low + 1;
+        if(size <= 1) return num[0];
+        else if(size == 2) return min(num[0], num[1]);
+        else {
+            int mid = (low + high) / 2;
+            if(num[mid] < num[mid - 1]) return num[mid];
+            else if(num[mid] > num[mid + 1]) return num[mid + 1];
+            else if(num[mid] < num[high]) return BinarySearch(num, low, mid);
+            else if(num[mid] > num[high]) return BinarySearch(num, mid, high);
+        }
+    }
+};
+
+// the key point is how to decide (low, mid) or (mid, high)
