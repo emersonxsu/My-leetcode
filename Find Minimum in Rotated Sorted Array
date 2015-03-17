@@ -5,9 +5,7 @@ public:
         return BinarySearch(num, low, high);
     }
     int BinarySearch(vector<int> &num, int low, int high) {
-        int size = high - low + 1;
-        if(size <= 1) return num[0];
-        else if(size == 2) return min(num[0], num[1]);
+        if(high - low <= 0) return num[0];
         else {
             int mid = (low + high) / 2;
             if(num[mid] < num[mid - 1]) return num[mid];
