@@ -1,0 +1,17 @@
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        vector<int> cur, pre;
+        cur.push_back(1);
+        if(rowIndex == 0) return cur;
+        for(int i = 1; i <= rowIndex; ++i) {
+            pre = cur;
+            cur.clear();
+            for(int j = 0; j <= i; ++j) {
+                if(j == 0 || j == i) cur.push_back(1);
+                else cur.push_back(pre[j] + pre[j-1]);
+            }
+        }
+        return cur;
+    }
+};
