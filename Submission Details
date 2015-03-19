@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int maxProduct(int A[], int n) {
+        int maxPdt = A[0], minPdt = A[0];
+        int maxRes = maxPdt;
+        for(int i = 1; i < n; ++i) {
+            int tmpMax = maxPdt;
+            maxPdt = max(max(tmpMax * A[i], minPdt * A[i]), A[i]);
+            minPdt = min(min(tmpMax * A[i], minPdt * A[i]), A[i]);
+            maxRes = max(maxPdt, maxRes);
+        }
+        return maxRes;
+    }
+};
+
+/*
+1. keep recording and updating min and max. 
+2. need store the previous max. 
