@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<vector<int> > combine(int n, int k) {
+        vector< vector<int> > res;
+        vector<int> tmp;
+        dfs(res, tmp, n, k, 0);
+        return res;
+    }
+    
+    void dfs(vector< vector<int> > &res, vector<int> tmp, int n, int k, int pos) {
+        if(tmp.size() == k) res.push_back(tmp);
+        else {
+            for(int i = pos; i < n; ++i) {
+                tmp.push_back(i+1);
+                dfs(res, tmp, n, k, i + 1);
+                tmp.pop_back();
+            }
+        }
+        
+    }
+};
